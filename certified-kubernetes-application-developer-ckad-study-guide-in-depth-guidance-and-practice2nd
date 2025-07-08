@@ -1,0 +1,67 @@
+pods
+
+kubectl run hazelcast --image=hazelcast/hazelcast:5.1.7 \
+--port=5701 --env="DNS_DOMAIN=cluster" --labels="app=hazelcast,env=prod"
+
+kubectl describe pods hazelcast | grep Image
+
+kubectl get pods hazelcast
+
+
+You can use the exec command to open a shell in the container to
+explore it interactively,
+kubectl exec -it hazelcast -- /bin/sh
+
+It’s also possible to execute a single command inside of a container. Say you wanted to
+render the environment variables available to containers without having to be logged Just remove the interactive flag -it and provide the relevant command after the
+two dashes
+kubectl exec hazelcast -- env
+
+Say you want to render all environ‐
+ment variables using env to see what’s available inside of the container. The following
+command achieves exactly that:
+$ kubectl run busybox --image=busybox:1.36.1 --rm -it --restart=Never -- env
+
+-i (interactive): Keeps stdin open, allowing interaction
+-t (tty): Allocates a pseudo-TTY, enabling proper terminal formatting
+
+You can inspect a Pod’s IP address
+by using the -o wide command-line option for the get pod command
+kubectl get pod nginx -o wide
+kubectl get pod nginx -o yaml
+kubectl get pod nginx -o jsonpath='{.status.podIP}'
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
