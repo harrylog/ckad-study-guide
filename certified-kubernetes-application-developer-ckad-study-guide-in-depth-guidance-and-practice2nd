@@ -64,6 +64,8 @@ $ kubectl get cronjobs current-date -o yaml | grep failedJobsHistoryLimit:
 failedJobsHistoryLimit: 1
 
 
+volumes
+
 
 
 
