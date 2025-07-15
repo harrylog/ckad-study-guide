@@ -31,6 +31,236 @@ kubectl get pod nginx -o wide
 kubectl get pod nginx -o yaml
 kubectl get pod nginx -o jsonpath='{.status.podIP}'
 
+$ kubectl run mypod --image=busybox:1.36.1 -o yaml --dry-run=client \
+> pod.yaml -- /bin/sh -c "while true; do date; sleep 10; done"
+
+
+You can always switch back to the default namespace or another custom namespace
+using the config set-context command:
+$ kubectl config set-context --current --namespace=default
+
+
+
+jobs
+
+
+The following command renders the parameters
+of the Job we created :
+$ kubectl get jobs counter -o yaml | grep -C 1 "completions"
+
+$ kubectl create cronjob current-date --schedule="* * * * *" \
+--image=nginx:1.25.1 -- /bin/sh -c 'echo "Current date: $(date)"'
+
+It’s easy to match Jobs and Pods created by a CronJob. You can simply identify them
+by the name prefix.
+
+Even after a task in a Pod controlled by a CronJob completes, it will not be deleted
+automatically.
+By default, a CronJob retains
+the last three successful Pods and the last failed Pod:
+$ kubectl get cronjobs current-date -o yaml | grep successfulJobsHistoryLimit:
+successfulJobsHistoryLimit: 3
+$ kubectl get cronjobs current-date -o yaml | grep failedJobsHistoryLimit:
+failedJobsHistoryLimit: 1
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
